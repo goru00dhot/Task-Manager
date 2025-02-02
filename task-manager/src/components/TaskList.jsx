@@ -1,22 +1,52 @@
-import React from "react";
-import TaskItem from "./TaskItem.jsx";
-
-const tasks = [
-  { id: 1, title: "Complete React setup" },
-  { id: 2, title: "Create Navbar component" },
-  { id: 3, title: "Develop Task List component" },
-  { id: 4, title: "Style components with Tailwind" },
-  { id: 5, title: "Finalize project structure" }
-];
+import React, { useState } from 'react';
+import TaskItem from './TaskItem';
+import AddTask from './AddTask';
+import EditTask from './EditTask';
 
 function TaskList() {
+  const [tasks, setTasks] = useState([
+    'Task 1',
+    'Task 2',
+    'Task 3',
+    'Task 4',
+    'Task 5'
+  ]);
+  const [editingTask, setEditingTask] = useState(null);
+
+  const addTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+  };
+
+  const saveTask = (updatedTask) => {
+    const updatedTasks = tasks.map((task) =>
+      task === editingTask ? updatedTask : task
+    );
+    setTasks(updatedTasks);
+    setEditingTask(null);
+  };
+
+  const startEditing = (task) => {
+    setEditingTask(task);
+  };
+
   return (
-    <div className="max-w-lg mx-auto">
-      <ul className="bg-gray-100 shadow-md rounded-lg p-4">
-        {tasks.map((task) => (
-          <TaskItem key={task.id} title={task.title} />
-        ))}
-      </ul>
+    <div>
+      <h2>Task List</h2>
+      <AddTask addTask={addTask} />
+
+      {editingTask ? (
+        <EditTask task={editingTask} saveTask={saveTask} /> // Ensure this is properly closed
+      ) : (
+        <ul>
+          {tasks.map((task, index) => (
+            <TaskItem
+              key={index}
+              task={task}
+              onEdit={startEditing}
+            />
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

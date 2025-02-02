@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
 
-function TaskItem({ title }) {
+function TaskItem({ task, onEdit }) {
   return (
-    <li className="border-b p-3 text-lg font-medium last:border-none">
-      ✅ {title}
+    <li>
+      {task} 
+      <button onClick={() => onEdit(task)}>Edit</button>
     </li>
   );
 }

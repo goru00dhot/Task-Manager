@@ -1,11 +1,13 @@
-import React from "react";
+// src/components/Footer.jsx
 
-function Footer() {
+import React from 'react';
+
+const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white text-center p-4 mt-6">
-      <p>© {new Date().getFullYear()} Task Manager App</p>
+    <footer>
+      <p>© 2025 Task Manager App</p>
     </footer>
   );
-}
+};
 
 export default Footer;

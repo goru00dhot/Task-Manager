@@ -1,9 +1,15 @@
-import React from "react";
+import React from 'react';
+import './Navbar.css';  // Import the updated CSS
 
 function Navbar() {
   return (
-    <nav className="bg-blue-600 p-4 text-white shadow-lg">
-      <h1 className="text-xl font-bold text-center">Task Manager</h1>
+    <nav className="navbar">
+      <h1 className="navbar-title">Task Manager</h1>
+      <ul className="navbar-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
     </nav>
   );
 }
